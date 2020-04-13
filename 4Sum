@@ -1,0 +1,43 @@
+//Strictly leetcode solution   O(N^3)
+
+class Solution {
+public:
+   vector<vector<int>> fourSum(vector<int>& nums, int target) {
+ vector<vector<int>>result;
+ if(nums.size()<4) return result;  
+ int len=nums.size();
+ sort(nums.begin(),nums.end());
+ for(int i=0;i<len;i++)
+ {
+     for(int j=i+1;j<len;j++)
+     {
+         int left=j+1;
+         int right=len-1;
+         while(left<right)
+         {
+           int sum=nums[i]+nums[j]+nums[left]+nums[right];
+           if(sum==target)
+           {
+               result.push_back({nums[i],nums[j],nums[left],nums[right]});
+              
+               int lval=nums[left];
+               while(left<len&&nums[left]==lval)
+                   left++;
+               int rval=nums[right];
+               while(right>left&&nums[right]==rval)
+                   right--;
+           }
+            else if(sum<target)
+             left++;
+            else 
+             right--;
+         } 
+         while(j+1<len&&nums[j+1]==nums[j])
+             j++;
+     }
+         while(i+1<len&&nums[i+1]==nums[i])
+             i++;
+ }
+    return result;
+}
+};
