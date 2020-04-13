@@ -1,0 +1,29 @@
+//input is not taken int this code//
+
+class Solution {
+public:int n;
+    set<vector<int> >s;
+    void comb(int curr,  vector<vector<int>> &res,vector<int>&path,int start,int k){
+        if(curr==k){
+            if(s.find(path)==s.end()){
+            res.push_back(path);
+                s.insert(path);}
+            return;
+        }
+        for(int i=start;i<=n;i++){
+            
+            path.push_back(i);
+            comb(curr+1,res,path,i+1,k);
+            path.pop_back();
+            
+        }
+    }
+    vector<vector<int>> combine(int x, int k) {
+        n=x;
+         vector<vector<int>> res;
+        vector<int>path;
+       // vector<bool>vis(n+1,false);
+        comb(0,res,path,1,k);
+        return res;
+    }
+};
