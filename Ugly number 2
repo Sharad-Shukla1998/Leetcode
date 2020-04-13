@@ -1,0 +1,33 @@
+//Strictly leetcode solution
+
+
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+	int arr[1690];
+        arr[0]=1;
+        int index2=0,index3=0,index5=0;
+        int mul2=2,mul3=3,mul5=5;
+        for(int i=1;i<1690;i++)
+        {
+            int num=min(mul2,min(mul3,mul5));
+             arr[i]=num;
+            if(num==mul2){
+                index2++;
+                mul2=arr[index2]*2;
+            }
+             if(num==mul3){
+                index3++;
+                mul3=arr[index3]*3;
+            }
+             if(num==mul5){
+                index5++;
+                mul5=arr[index5]*5;
+            }
+            
+            
+        }
+        return arr[n-1];
+
+    }
+};
