@@ -1,0 +1,27 @@
+//Leetcode
+class Solution {
+public:
+    int lastStoneWeight(vector<int>& arr) {
+        priority_queue<int,vector<int> >p;
+        if(arr.size()==1)
+            return arr[0];
+        for(int i=0;i<arr.size();i++)
+            p.push(arr[i]);
+        while(p.size()>1){
+            int a=p.top();
+            p.pop();
+            int b=p.top();
+            p.pop();
+            if(a==b)
+                continue;
+            if(a!=b)
+                p.push(abs(a-b));
+            
+        }
+        
+        
+        if(p.size()==1)
+            return p.top();
+        return  0;
+    }
+};
