@@ -1,0 +1,77 @@
+//Leetcode
+class Solution {
+public:
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int n=graph.size();
+        vector<int>adj[n];
+        vector<int>indeg(n,0);
+        for(int i=0;i<n;i++){
+            for(auto j: graph[i])
+            {
+                adj[j].push_back(i);
+                indeg[i]++;
+            }
+        }
+        queue<int>q;
+        for(int i=0;i<n;i++)
+            if(indeg[i]==0)
+                q.push(i);
+        while(!q.empty()){
+            int u=q.front();
+            q.pop();
+            for(auto x: adj[u])
+            {
+                indeg[x]--;
+                if(indeg[x]==0)
+                    q.push(x);
+            }
+        }
+        vector<int>v;
+        for(int i=0;i<n;i++)
+        {
+            if(indeg[i]==0)
+                v.push_back(i);
+        }
+        return v;
+   
+    }
+};
+
+
+class Solution {
+public:
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int n=graph.size();
+        vector<int>adj[n];
+        vector<int>indeg(n,0);
+        for(int i=0;i<n;i++){
+            for(auto j: graph[i])
+            {
+                adj[j].push_back(i);
+                indeg[i]++;
+            }
+        }
+        queue<int>q;
+        for(int i=0;i<n;i++)
+            if(indeg[i]==0)
+                q.push(i);
+        while(!q.empty()){
+            int u=q.front();
+            q.pop();
+            for(auto x: adj[u])
+            {
+                indeg[x]--;
+                if(indeg[x]==0)
+                    q.push(x);
+            }
+        }
+        vector<int>v;
+        for(int i=0;i<n;i++)
+        {
+            if(indeg[i]==0)
+                v.push_back(i);
+        }
+        return v;
+   
+    }
+};
