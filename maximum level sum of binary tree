@@ -1,0 +1,30 @@
+class Solution {
+public:
+    void btree(TreeNode* root,map<int,int>&m,int level)
+    {
+        if(!root)
+            return;
+        m[level]+=root->val;
+        btree(root->left,m,level+1);
+        btree(root->right,m,level+1);
+        
+    }
+    
+    int maxLevelSum(TreeNode* root) {
+        if(!root)
+            return 0;
+         
+        map<int,int>m;
+        btree(root,m,0);
+        map<int,int>::iterator it;
+        int maxi=INT_MIN;
+        int val=0;
+        for(it=m.begin();it!=m.end();it++)
+        {
+        if((*it).second > maxi){
+            maxi=max(maxi,(*it).second);
+            val=(*it).first+1;}
+        }
+return val;
+    }
+};
