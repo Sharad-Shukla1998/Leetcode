@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int countSubstrings(string s) {
+        int l=0;
+        for(int k=0;k<s.length();k++){
+            int i=k,j=k;
+            while(j>=0 && i<s.length() && s[i]==s[j])
+            {l++;
+                i++;
+                j--;
+                
+            }
+            
+            
+             i=k,j=k-1;
+             while(j>=0 && i<s.length() && s[i]==s[j])
+            {l++;
+                i++;
+                j--;
+               
+            }
+           
+        }
+        return l;
+    }
+};
