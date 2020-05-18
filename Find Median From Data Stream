@@ -1,0 +1,42 @@
+class MedianFinder {
+public:
+    /** initialize your data structure here. */
+    priority_queue<int>p;
+    priority_queue<int,vector<int>,greater<int> >q;
+    MedianFinder() {
+        
+    }
+    
+    void addNum(int n) {
+        if(p.empty() && q.empty())
+            p.push(n);
+    else if( n<=p.top() )
+            p.push(n);
+     else if(n>p.top())
+            q.push(n);
+        int a;
+         if((p.size()-q.size())==2)
+        {
+            int a=p.top();
+            q.push(a);
+            p.pop();
+        }
+         if((q.size()-p.size())==2)
+        {
+            int a=q.top();
+            p.push(a);
+            q.pop();
+        }
+    
+       
+    }
+    
+    double findMedian() {
+        if(p.size()==q.size())
+            return (p.top()*1.0+q.top())/2;
+        if(p.size()>q.size())
+            return p.top();
+        else
+            return q.top();
+    }
+};
