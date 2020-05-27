@@ -1,0 +1,36 @@
+//O(n2)
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& a) {
+        int n = a.size();
+        int i,j,k,l,m=0,r;
+        
+        sort(a.begin(),a.end());
+        set<vector<int>>st;
+         r = n-1;
+        vector<vector<int>>ans;
+        for(i=0;i<n-2;i++){
+            if(i>0 && a[i]==a[i-1])
+                continue;            
+            l = i+1;
+            r = n-1;
+            while(l<r){
+                int dx = a[i] + a[l] + a[r];
+                if(dx==0){
+                    vector<int>tmp{a[i],a[l],a[r]};
+                    ans.push_back(tmp);
+                    while(l<r && a[l]==a[l+1])
+                        l++;
+                    while(l<r && a[r]==a[r-1])
+                        r--;
+                    l++,r--;
+                }
+                else if(dx<0)
+                    l++;
+                else
+                    r--;
+            }
+        }
+        return ans;
+    }
+};
