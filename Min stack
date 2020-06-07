@@ -1,0 +1,36 @@
+class MinStack {
+public:stack<long long >s1;
+    stack<long long >supp;
+    /** initialize your data structure here. */
+    MinStack() {
+        
+    }
+    
+    void push(int x) {
+      s1.push(x);
+        if(supp.empty())
+            supp.push(x);
+       else if(supp.top()>=x)
+            supp.push(x);
+    }
+    
+    void pop() {
+        
+        if(s1.top()==supp.top())
+        {
+            s1.pop();
+            supp.pop();
+        }
+        else
+            s1.pop();
+    }
+    
+    int top() {
+        return s1.top();
+    }
+    
+    int getMin() {
+       
+            return supp.top();
+    }
+};
