@@ -1,0 +1,36 @@
+class Solution {
+public:
+    ListNode* rev(ListNode* head, int m){
+        ListNode* h=head,* curr=head,*prev=NULL,*nextcurr=head->next;
+        while(m--){
+            curr->next=prev;
+            prev=curr;
+            curr=nextcurr;
+            if(nextcurr)
+            nextcurr=nextcurr->next;
+        }
+        h->next=curr;
+        return prev;
+        
+        
+        
+    }
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+     ListNode* a=head,*prev=NULL;
+        int c=0;
+        if(m==1){
+            return rev(a,n-m+1);
+    }
+        while(a){
+            c++;
+            if(c==m-1){
+                a->next=rev(a->next,n-m+1);
+                break;
+            }
+            a=a->next;
+            prev=a;
+            
+        }
+        return head;
+    }
+};
