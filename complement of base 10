@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int bitwiseComplement(int N) {
+       int a=N;
+        if(!a)
+            return 1;
+        int x=log2(a);
+        int sum=0;
+        for(int i=x;i>=0;i--)
+        {
+            if(!(a>>i & 1))
+                sum+=pow(2,i);
+           
+        }
+        return sum;
+    }
+};
