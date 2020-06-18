@@ -1,0 +1,10 @@
+class Solution {
+public:
+    int findLUSlength(string a, string b) {
+        if(a.length()!=b.length() || a!=b)
+            return max(a.length(),b.length());
+        if(a==b)
+            return -1;
+        return 0;
+    }
+};
