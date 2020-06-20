@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& a) {
+     
+        int low=0;
+        int high=a.size()-1;
+        while(high-low>1)
+        {
+            int mid=(high+low)/2;
+            if(mid-1>=0 && a[mid-1]<=a[mid])
+                low=mid;
+            else
+                high=mid;
+        }
+        if(a[low]<a[high])
+            return high;
+        else
+            return low;
+        
+        
+    }
+};
