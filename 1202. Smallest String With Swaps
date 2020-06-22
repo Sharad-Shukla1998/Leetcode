@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int find(int x , vector<int>&parent) 
+    {
+        if(x == parent[x])
+            return x;
+        else
+            return parent[x] = find(parent[x], parent); 
+    }
+    string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {
+        int n=pairs.size();
+        vector<int>parent(s.length());
+        vector<int>size(s.length(),1);
+        for(int i=0;i<s.length();i++)
+            parent[i]=i;
+        for(int i=0;i<n;i++)
+        {
+            
+            int a = find(pairs[i][0],parent);
+            int b = find(pairs[i][1],parent);
+            if(a != b)
+            {
+                if(size[a] < size[b])
+                    swap(a,b);
+                parent[b] = a;
+                size[a] += size[b];
+            }
+        }
+        
+        unordered_map<int,vector<int>>m;
+        for(int i=0;i<s.length();i++)
+            m[find(i,parent)].push_back(i);
+        
+        for(auto x : m){
+            string str="";
+            for(auto y : x.second)
+                str+=s[y];
+            sort(str.begin(),str.end());
+            int j=0;
+            for(auto y:x.second)
+                s[y]=str[j++];
+            
+        } 
+       return s;
+     
+    }
+};
